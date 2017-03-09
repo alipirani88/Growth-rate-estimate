@@ -1,6 +1,6 @@
 # Growth-rate-analysis (In-progress)
 
-#### The purpose of this pipeline is to estimate the growth rate of a bacteria in a medium by looking at their sequencing read coverage and calculating their peak to through ratio(PTR; ratio of copy numbers at origin of replication to terminus). 
+#### This pipeline estimates the growth rate of a bacteria in a medium by looking at their sequencing read coverage and calculating their peak to through ratio(PTR; ratio of copy numbers at origin of replication to terminus). 
 
 The algorithm of this pipeline is based on a published article named: Growth dynamics of gut microbiota in health and disease inferred from single metagenomic samples http://science.sciencemag.org/content/349/6252/1101.long with a few minor changes.
 
