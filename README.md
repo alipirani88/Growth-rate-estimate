@@ -28,7 +28,7 @@ The pipeline generates various output files from different tools at different st
 
 Example:
 
-
+![](/perc_coverage_graph.png?raw=true)
 
 
 
