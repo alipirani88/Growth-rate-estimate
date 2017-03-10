@@ -17,11 +17,18 @@ The algorithm of this pipeline is based on a published article named: Growth dyn
 ***
 
 The pipeline generates various output files from different tools at different steps. The most notable ones are:
+
 - ***Clean reads***: *.fq.gz files from trimmomatic.
 
 - ***Alignment files***: analysisname_aln.sam and analysisname_aln.bam from Bowtie2, analysisname_aln_marked.bam from GATK MarkDuplicates, and finally a sorted BAM from marked bam file analysisname_aln_sort.bam. 
 
-- ***Bed file***: analysisname_unmapped.bed and analysisname_unmapped.bed_positions with positions that were unmapped. Bedcoverage file analysisname_.bedcov
+- ***Bed file***: Bedtools genome coverage file analysisname_coverage.bed
+
+- ***coverage_graph.R*** script to plot sequence coverage graph with PTR values
+
+Example:
+
+
 
 
 
