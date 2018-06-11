@@ -28,7 +28,11 @@ The pipeline generates various output files from different tools at different st
 
 Example:
 
+<<<<<<< HEAD
 
+=======
+![](/perc_coverage_graph.png?raw=true)
+>>>>>>> 9e55eedb374d38fa24b7e41530494eb68eb8cd0f
 
 
 
