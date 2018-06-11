@@ -30,7 +30,7 @@ def generate_moving_sum_results(moving_sum_array, out_path):
 
 def calculate_per_of_reads(median_sliding_window_array, bedfile):
     #stats_file = bedfile.replace('_coverage.bed', '_alignment_stats')
-    stats_file = bedfile.replace('_coverage.bed', '_alignment_stats')
+    stats_file = bedfile.replace('_coverage.bed_only_mapped.bed', '_alignment_stats')
     cmd = "grep \'mapped (\' " + stats_file
     proc = subprocess.Popen([cmd], stdout=subprocess.PIPE, shell=True)
     (out, err) = proc.communicate()
@@ -54,8 +54,6 @@ def smoothing_1(read_counts, window, out_path, bedfile, logger, Config):
     ## Step 1
     raw_count_sliding_window_array = []
     zero_bins = 0
-    sixty_perc_bins = 0
-    
     for i in xrange(0, len(read_counts), 100):
         start = i
         end = i + window
@@ -63,35 +61,25 @@ def smoothing_1(read_counts, window, out_path, bedfile, logger, Config):
 	#print read_counts[start:end].count(0)
         if read_counts[start:end].count(0) == 10000:
             zero_bins += 1
-	#if read_counts[start:end].count(0) >= 6000:
-        #    sixty_perc_bins += 1
-	else:
-	    raw_count_sliding_window_array.append(read_counts[start:end])
-	if read_counts[start:end].count(0) >= 6000:
-            sixty_perc_bins += 1
+        raw_count_sliding_window_array.append(read_counts[start:end])
     keep_logging('The length of raw_count_sliding_window_array is {}'.format(len(raw_count_sliding_window_array)), 'The length of raw_count_sliding_window_array is {}'.format(len(raw_count_sliding_window_array)), logger, 'debug')
     keep_logging('The number of bins with no mapped reads: {}'.format(str(zero_bins)), 'The number of bins with no mapped reads: {}'.format(str(zero_bins)), logger, 'debug')
-    keep_logging('The number of bins with 60 percent of bin without mapped reads: {}'.format(str(sixty_perc_bins)), 'The number of bins with no mapped reads: {}'.format(str(sixty_perc_bins)), logger, 'debug')
 
-    
     ## Step 2
     moving_sum_array = []
     for i in raw_count_sliding_window_array:
         moving_sum_array.append(sum(i))
     generate_moving_sum_results(moving_sum_array, out_path)
 
-    keep_logging('The length of moving_sum_array is {}'.format(len(moving_sum_array)), 'The length of moving_sum_array is {}'.format(len(moving_sum_array)), logger, 'debug')
-
     ## Step 3
     median_sliding_window_array = []
     for i in xrange(0, len(read_counts), 100):
         start = i
         end = i + window
+        print len(moving_sum_array[start:end])
 	#5000 changed to 100
-	if len(moving_sum_array[start:end]) > 5000:
+	if len(moving_sum_array[start:end]) > 1000:
             median_sliding_window_array.append(statistics.median(moving_sum_array[start:end]))
-    
-    keep_logging('The length of median_sliding_window_array is {}'.format(len(median_sliding_window_array)), 'The length of median_sliding_window_array is {}'.format(len(median_sliding_window_array)), logger, 'debug')
 
     ## Step 4
     peak = max(median_sliding_window_array)

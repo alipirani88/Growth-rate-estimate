@@ -62,37 +62,41 @@ def pipeline(args, logger):
     ## 1. Pre-Processing Raw reads using Trimmomatic
     keep_logging('START: Pre-Processing Raw reads using Trimmomatic', 'START: Pre-Processing Raw reads using Trimmomatic', logger, 'info')
     if args.type == "PE":
+        #print "skip trimming"
         trimmomatic(args.forward_raw, args.reverse_raw, args.output_folder, args.croplength, logger, Config)
     else:
         reverse_raw = "None"
-        #trimmomatic(args.forward_raw, reverse_raw, args.output_folder, args.croplength, logger, Config)
+        #print "skip trimming"
+        trimmomatic(args.forward_raw, reverse_raw, args.output_folder, args.croplength, logger, Config)
     keep_logging('END: Pre-Processing Raw reads using Trimmomatic\n', 'END: Pre-Processing Raw reads using Trimmomatic\n', logger, 'info')
 
-    # ## 2. Stages: Alignment using BWA
-    # keep_logging('START: Mapping Reads using {}'.format(ConfigSectionMap("pipeline", Config)['aligner']), 'START: Mapping Reads using {}'.format(ConfigSectionMap("pipeline", Config)['aligner']), logger, 'info')
-    # split_field = prepare_readgroup(args.forward_raw, ConfigSectionMap("pipeline", Config)['aligner'], logger)
-    # files_to_delete = []
-    # out_sam = align(args.bam_input, args.output_folder, args.index, split_field, args.analysis_name, files_to_delete, logger, Config, args.type)
-    # keep_logging('END: Mapping Reads using {}\n'.format(ConfigSectionMap("pipeline", Config)['aligner']), 'END: Mapping Reads using {}\n'.format(ConfigSectionMap("pipeline", Config)['aligner']), logger, 'info')
-    #
-    # ## 3. Stages: Post-Alignment using SAMTOOLS, PICARD etc
-    # keep_logging('START: Post-Alignment using SAMTOOLS, PICARD etc...', 'START: Post-Alignment using SAMTOOLS, PICARD etc...', logger, 'info')
-    # out_sorted_bam = prepare_bam(out_sam, args.output_folder, args.analysis_name, files_to_delete, logger, Config)
-    # # out_sorted_bam = "%s/%s_aln_sort.bam" % (args.output_folder, args.analysis_name)
-    # final_coverage_file = bedtools(out_sorted_bam, args.output_folder, args.analysis_name, logger, Config)
-    # keep_logging('END: Post-Alignment using SAMTOOLS, PICARD etc...\n', 'END: Post-Alignment using SAMTOOLS, PICARD etc...\n', logger, 'info')
-    #
-    # ## 4. Stages: Statistics
-    # keep_logging('START: Generating Statistics Reports', 'START: Generating Statistics Reports', logger, 'info')
-    # alignment_stats_file = alignment_stats(out_sorted_bam, args.output_folder, args.analysis_name, logger, Config)
-    # gatk_DepthOfCoverage(out_sorted_bam, args.output_folder, args.analysis_name, reference, logger, Config)
-    # qualimap_report = qualimap(out_sorted_bam, args.output_folder, args.analysis_name, logger, Config)
-    # # final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
-    # keep_logging('END: Generating Statistics Reports\n', 'END: Generating Statistics Reports\n', logger, 'info')
+    ## 2. Stages: Alignment using BWA
+    keep_logging('START: Mapping Reads using {}'.format(ConfigSectionMap("pipeline", Config)['aligner']), 'START: Mapping Reads using {}'.format(ConfigSectionMap("pipeline", Config)['aligner']), logger, 'info')
+    split_field = prepare_readgroup(args.forward_raw, ConfigSectionMap("pipeline", Config)['aligner'], logger)
+    files_to_delete = []
+    out_sam = align(args.bam_input, args.output_folder, args.index, split_field, args.analysis_name, files_to_delete, logger, Config, args.type)
+    keep_logging('END: Mapping Reads using {}\n'.format(ConfigSectionMap("pipeline", Config)['aligner']), 'END: Mapping Reads using {}\n'.format(ConfigSectionMap("pipeline", Config)['aligner']), logger, 'info')
+
+    ## 3. Stages: Post-Alignment using SAMTOOLS, PICARD etc
+    keep_logging('START: Post-Alignment using SAMTOOLS, PICARD etc...', 'START: Post-Alignment using SAMTOOLS, PICARD etc...', logger, 'info')
+    out_sorted_bam = prepare_bam(out_sam, args.output_folder, args.analysis_name, files_to_delete, logger, Config)
+    out_sorted_bam = "%s/%s_aln_sort.bam" % (args.output_folder, args.analysis_name)
+    #out_sorted_bam = "%s/%s_aln_sort_filtered.bam" % (args.output_folder, args.analysis_name)
+    final_coverage_file = bedtools(out_sorted_bam, args.output_folder, args.analysis_name, logger, Config)
+    keep_logging('END: Post-Alignment using SAMTOOLS, PICARD etc...\n', 'END: Post-Alignment using SAMTOOLS, PICARD etc...\n', logger, 'info')
+
+    ## 4. Stages: Statistics
+    keep_logging('START: Generating Statistics Reports', 'START: Generating Statistics Reports', logger, 'info')
+    alignment_stats_file = alignment_stats(out_sorted_bam, args.output_folder, args.analysis_name, logger, Config)
+    gatk_DepthOfCoverage(out_sorted_bam, args.output_folder, args.analysis_name, reference, logger, Config)
+    #qualimap_report = qualimap(out_sorted_bam, args.output_folder, args.analysis_name, logger, Config)
+    #final_coverage_file = "%s/%s_coverage.bed_only_mapped.bed" % (args.output_folder, args.analysis_name)
+    #final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
+    keep_logging('END: Generating Statistics Reports\n', 'END: Generating Statistics Reports\n', logger, 'info')
     final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
     ## 5. Stages: PTR Analysis
     keep_logging('START: Analyzing Bedfiles for PTR analysis', 'START: Analyzing Bedfiles for PTR analysis', logger, 'info')
-    generate_PTR_dataframe(final_coverage_file, args.output_folder, logger, Config)
+    #generate_PTR_dataframe(final_coverage_file, args.output_folder, logger, Config)
     keep_logging('END: Analyzing Bedfiles for PTR analysis\n', 'END: Analyzing Bedfiles for PTR analysis\n', logger, 'info')
 
 ## Check Subroutines
@@ -165,7 +169,6 @@ def file_exists(path1, path2, reference):
         keep_logging('The reference seq dict file required for GATK and PICARD exists.', 'The reference seq dict file required for GATK and PICARD exists.', logger, 'info')
 
 
-
 def java_check():
     keep_logging('Checking Java Availability...', 'Checking Java Availability...', logger, 'info')
     jd = sp.check_output(["java", "-version"], stderr=sp.STDOUT)
@@ -215,6 +218,17 @@ def create_index(reference,ref_index_suffix1, ref_index_suffix2, ref_index_suffi
                 sys.exit(1)
         if not os.path.isfile(ref_index_suffix1):
             keep_logging('The {} reference index files were not created properly. Please try to create the index files again or manually.'.format(aligner), 'The {} reference index files were not created properly. Please try to create the index files again or manually.'.format(aligner), logger, 'exception')
+    elif aligner == "bowtie":
+        cmd = "%s/%s %s %s" % (ConfigSectionMap("bowtie", Config)['bowtie_bin'], ConfigSectionMap("bowtie", Config)['build_cmd'], reference, reference)
+        keep_logging(cmd, cmd, logger, 'debug')
+        try:
+            call(cmd, logger)
+        except sp.CalledProcessError:
+                keep_logging('Error in {} Indexer. Exiting.'.format(aligner), 'Error in {} Indexer. Exiting.'.format(aligner), logger, 'exception')
+                sys.exit(1)
+        if not os.path.isfile(ref_index_suffix1):
+            keep_logging('The {} reference index files were not created properly. Please try to create the index files again or manually.'.format(aligner), 'The {} reference index files were not created properly. Please try to create the index files again or manually.'.format(aligner), logger, 'exception')
+
     else:
         print "Different Aligner in config file"
 

@@ -7,10 +7,10 @@ from modules.logging_subprocess import *
 #################################################### Bowtie Alignment ############################################
 def align_bowtie(base_cmd, forward_clean, reverse_clean, forward_unpaired, reverse_unpaired, out_path, reference, split_field, analysis, files_to_delete, logger, Config, type):
     if type == "PE":
-        cmd = "%s -x %s -1 %s -2 %s -S %s/%s_PE_aln.sam -t -p 8 -k 1 --non-deterministic --end-to-end %s" % (base_cmd, reference, forward_clean, reverse_clean, out_path, analysis, split_field)
+        cmd = "%s -x %s -1 %s -2 %s -S %s/%s_PE_aln.sam -t -p 8 -k 1 --non-deterministic --reorder --end-to-end %s" % (base_cmd, reference, forward_clean, reverse_clean, out_path, analysis, split_field)
         out_sam = "%s/%s_PE_aln.sam" % (out_path, analysis)
     else:
-        cmd = "%s -x %s -U %s -S %s/%s_SE_aln.sam -t -p 8 -k 1 --non-deterministic --end-to-end %s" % (base_cmd, reference, forward_clean, out_path, analysis, split_field)
+        cmd = "%s -x %s -U %s -S %s/%s_SE_aln.sam -t -p 8 -k 1 --non-deterministic --reorder --end-to-end %s" % (base_cmd, reference, forward_clean, out_path, analysis, split_field)
         out_sam = "%s/%s_SE_aln.sam" % (out_path, analysis)
     keep_logging("COMMAND: " + cmd, cmd, logger, 'debug')
     try:

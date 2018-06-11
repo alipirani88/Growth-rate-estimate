@@ -16,7 +16,7 @@ binbase: /home/apirani/bin/
 # Set parameter for Trimmomatic
 [Trimmomatic]
 trimmomatic_bin: /Trimmomatic/
-adaptor_filepath: adapters/TruSeq3-PE.fa
+adaptor_filepath: adapters/TruSeq3-Nextera_PE_combined.fa
 seed_mismatches: 2
 palindrome_clipthreshold: 30
 simple_clipthreshold: 10
@@ -79,7 +79,6 @@ cores: 8
 build_cmd: bowtie2-build
 align_cmd: bowtie2
 
-
 [vcftools]
 #vcftools_perl_bin: /vcftools_0.1.12b/perl/
 vcftools_bin: /vcftools_0.1.12b/bin/
@@ -91,117 +90,47 @@ vcftools_perl_bin: /vcftools_0.1.12b/perl/
 qualimap_bin: /qualimap_v2.1/
 base_cmd: qualimap
 
-
 [bedtools]
 bedtools_bin: /bedtools2-master/bin/
 base_cmd: bedtools
 
-
-
 ########################################################################################################################
-
+# UTI PTR project reference genomes
 # Reference Genome to be used for pipeline
 # Set path for already indexed reference genome
-
-#Name of the reference genome. Provide this value with -index_name option.
-[KP_NTUH_chr]
-# Name of reference genome fasta file.
-Ref_Name: KP_NTUH_chr.fasta
-# path to the reference genome fasta file.
-Ref_Path: /Users/alipirani/Documents/bin/bin_varcall/bin_varcall/reference/KP_NTUH_chr/
-
-# Name of the reference genome. Provide this value with -index_name argument.
-[KPNIH1]
-# Name of reference genome fasta file.
-Ref_Name: KPNIH1.fasta
-# path to the reference genome fasta file.
-Ref_Path: /Users/alipirani/Documents/bin/bin_varcall/reference/KPNIH1/
-
-
-# Name of the reference genome. Provide this value with -index_name argument.
-[KPNIH32]
-# Name of reference genome fasta file.
-Ref_Name: KPNIH32.fasta
-# path to the reference genome fasta file.
-Ref_Path: /Users/alipirani/Documents/bin/bin_varcall/reference//KPNIH32/
-
-
-# Name of the reference genome. Provide this value with -index_name argument.
-[aus]
-# Name of reference genome fasta file.
-Ref_Name: Efae_aus0004_genome.fa
-# path to the reference genome fasta file.
-Ref_Path: /Users/alipirani/Documents/bin/bin_varcall/reference//aus/
-
-
-# Name of the reference genome. Provide this value with -index_name argument.
-[EPI51]
-# Name of reference genome fasta file.
-Ref_Name: Efae_EPI51_060509_genome.fa
-# path to the reference genome fasta file.
-Ref_Path: /Users/alipirani/Documents/bin/bin_varcall/reference//EPI51/
-
-
-# Name of the reference genome. Provide this value with -index_name argument.
-[EnGen0178]
-# Name of reference genome fasta file.
-Ref_Name: EnGen0178_genome.fa
-# path to the reference genome fasta file.
-Ref_Path: /Users/alipirani/Documents/bin/bin_varcall/reference//EnGen0178/
-
-
-# Name of the reference genome. Provide this value with -index_name argument.
-[EnGen0377]
-# Name of reference genome fasta file.
-Ref_Name: EnGen0377_genome.fa
-# path to the reference genome fasta file.
-Ref_Path: /Users/alipirani/Documents/bin/bin_varcall/reference//EnGen0377/
-
-[ECNIH3]
-# Name of reference genome fasta file.
-Ref_Name: ECNIH3.fa
-# path to the reference genome fasta file.
-Ref_Path: /home/apirani/bin/reference//ECNIH3/
-
-[MRSA_USA_300]
-# Name of reference genome fasta file.
-Ref_Name: MRSA_USA_300.fasta
-# path to the reference genome fasta file.
-Ref_Path: /home/apirani/bin/reference/MRSA_USA_300
-
-
-[6338]
-# Name of reference genome fasta file.
-Ref_Name: 6338_R1.fasta
-# path to the reference genome fasta file.
-Ref_Path: /home/apirani/bin/reference/6338
-
-[8061]
-# Name of reference genome fasta file.
-Ref_Name: 8061_R1.fasta
-# path to the reference genome fasta file.
-Ref_Path: /home/apirani/bin/reference/8061
-
-[KP_mrsa_41]
-# Name of reference genome fasta file.
-Ref_Name: KP_mrsa_41_1.fasta
-# path to the reference genome fasta file.
-Ref_Path: /home/apirani/bin/reference/KP_mrsa_41
-
-[KP_mrsa_67]
-# Name of reference genome fasta file.
-Ref_Name: KP_mrsa_67_1.fasta
-# path to the reference genome fasta file.
-Ref_Path: /home/apirani/bin/reference/KP_mrsa_67
-
-
 [CFT073]
 # Name of reference genome fasta file.
 Ref_Name: EscherichiacoliCFT073.fna
 # path to the reference genome fasta file.
 Ref_Path: /home/apirani/bin/reference/CFT073
 
+[EFC7]
+# Name of reference genome fasta file.
+Ref_Name: EFC7.fasta
+# path to the reference genome fasta file.
+Ref_Path: /home/apirani/bin/reference/EFC7/
 
+[EFC7_2]
+# Name of reference genome fasta file.
+Ref_Name: EFC7.fasta
+# path to the reference genome fasta file.
+Ref_Path: /home/apirani/bin/reference/EFC7_2/
 
+[ABU83972]
+# Name of reference genome fasta file.
+Ref_Name: ABU83972.fasta
+# path to the reference genome fasta file.
+Ref_Path: /home/apirani/bin/reference/ABU83972
 
+########################################################################################################################
+
+########################################################################################################################
+# Serratia PTR project reference genomes
+# Reference Genome to be used for pipeline
+# Set path for already indexed reference genome
+[UMH9]
+# Name of reference genome fasta file.
+Ref_Name: UMH9.fasta
+# path to the reference genome fasta file.
+Ref_Path: /scratch/esnitkin_fluxod/apirani/Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/UMH9/
 ########################################################################################################################
