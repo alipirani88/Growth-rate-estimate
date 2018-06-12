@@ -1,8 +1,8 @@
-# Growth-rate-analysis (In-progress)
+# Growth-rate-analysis
 
-#### This pipeline estimates the growth rate of a bacteria in a medium by looking at their sequencing read coverage and calculating their peak to through ratio(PTR; ratio of copy numbers at origin of replication to terminus). 
+#### This pipeline calculates peak to through ratio(PTR; ratio of copy numbers at origin of replication to terminus) from  mapped reads coverage.
 
-The algorithm of this pipeline is based on a published article named: Growth dynamics of gut microbiota in health and disease inferred from single metagenomic samples http://science.sciencemag.org/content/349/6252/1101.long with a few minor changes.
+The algorithm follows the procedure as described in this publication: Growth dynamics of gut microbiota in health and disease inferred from single metagenomic samples http://science.sciencemag.org/content/349/6252/1101.long with a few minor changes.
 
 #### The pipeline runs sequentially as follows:
 ***
