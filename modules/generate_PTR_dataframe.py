@@ -49,7 +49,7 @@ def calculate_per_of_reads(median_sliding_window_array, bedfile):
                 out.write(str(count)+','+str(perc)+'\n')
 
 def smoothing_1(read_counts, window, out_path, bedfile, logger, Config):
-    keep_logging('Generating data frame for Growth Rate(PTR) analysis', 'Generating data frame for Growth Rate(PTR) analysis', logger, 'info')
+    keep_logging('Smoothing data frame for Growth Rate analysis', 'Smoothing data frame for Growth Rate analysis', logger, 'info')
 
     ## Step 1
     raw_count_sliding_window_array = []
@@ -69,9 +69,9 @@ def smoothing_1(read_counts, window, out_path, bedfile, logger, Config):
 	    raw_count_sliding_window_array.append(read_counts[start:end])
 	if read_counts[start:end].count(0) >= 6000:
             sixty_perc_bins += 1
-    keep_logging('The length of raw_count_sliding_window_array is {}'.format(len(raw_count_sliding_window_array)), 'The length of raw_count_sliding_window_array is {}'.format(len(raw_count_sliding_window_array)), logger, 'debug')
+    #keep_logging('The length of raw_count_sliding_window_array is {}'.format(len(raw_count_sliding_window_array)), 'The length of raw_count_sliding_window_array is {}'.format(len(raw_count_sliding_window_array)), logger, 'debug')
     keep_logging('The number of bins with no mapped reads: {}'.format(str(zero_bins)), 'The number of bins with no mapped reads: {}'.format(str(zero_bins)), logger, 'debug')
-    keep_logging('The number of bins with 60 percent of bin without mapped reads: {}'.format(str(sixty_perc_bins)), 'The number of bins with no mapped reads: {}'.format(str(sixty_perc_bins)), logger, 'debug')
+    #keep_logging('The number of bins with 60 percent of bin without mapped reads: {}'.format(str(sixty_perc_bins)), 'The number of bins with no mapped reads: {}'.format(str(sixty_perc_bins)), logger, 'debug')
 
     
     ## Step 2
@@ -80,7 +80,7 @@ def smoothing_1(read_counts, window, out_path, bedfile, logger, Config):
         moving_sum_array.append(sum(i))
     generate_moving_sum_results(moving_sum_array, out_path)
 
-    keep_logging('The length of moving_sum_array is {}'.format(len(moving_sum_array)), 'The length of moving_sum_array is {}'.format(len(moving_sum_array)), logger, 'debug')
+    #keep_logging('The length of moving_sum_array is {}'.format(len(moving_sum_array)), 'The length of moving_sum_array is {}'.format(len(moving_sum_array)), logger, 'debug')
 
     ## Step 3
     median_sliding_window_array = []
@@ -91,13 +91,13 @@ def smoothing_1(read_counts, window, out_path, bedfile, logger, Config):
 	if len(moving_sum_array[start:end]) > 5000:
             median_sliding_window_array.append(statistics.median(moving_sum_array[start:end]))
     
-    keep_logging('The length of median_sliding_window_array is {}'.format(len(median_sliding_window_array)), 'The length of median_sliding_window_array is {}'.format(len(median_sliding_window_array)), logger, 'debug')
+    #keep_logging('The length of median_sliding_window_array is {}'.format(len(median_sliding_window_array)), 'The length of median_sliding_window_array is {}'.format(len(median_sliding_window_array)), logger, 'debug')
 
     ## Step 4
     peak = max(median_sliding_window_array)
     through = min([x for x in median_sliding_window_array if x !=0])
     PTR_median = peak/through
-    keep_logging('The peak and trough values for median_sliding_window_array is: {};{}'.format(peak, through), 'The peak and trough values for median_sliding_window_array is: {};{}'.format(peak, through), logger, 'info')
+    #keep_logging('The peak and trough values for median_sliding_window_array is: {};{}'.format(peak, through), 'The peak and trough values for median_sliding_window_array is: {};{}'.format(peak, through), logger, 'info')
 
     # print "The genomic location for peak values: %s" % (median_sliding_window_array.index(peak))
     # print "The genomic location for trough values: %s" % (median_sliding_window_array.index(through))
@@ -119,6 +119,7 @@ def smoothing_1(read_counts, window, out_path, bedfile, logger, Config):
     ## Step 6
     calculate_per_of_reads(median_sliding_window_array, bedfile)
 
+
     return PTR_median
 
 def generate_coverage(bedfile, read_counts):
@@ -138,7 +139,7 @@ def generate_coverage(bedfile, read_counts):
             out.write(str(count)+','+str(i)+'\n')
 
 # Main Method
-def generate_PTR_dataframe(bedfile, out_path, logger, Config):
+def generate_PTR_dataframe(bedfile, out_path, analysis, logger, Config):
     keep_logging('Reading BED file: {} and generating read counts matrix'.format(bedfile), 'Reading BED file: {} and generating read count matrix'.format(bedfile), logger, 'info')
     out_file = out_path + "/" + os.path.basename(bedfile)[0:20] + "_bins.csv"
     window = 10000
@@ -150,6 +151,8 @@ def generate_PTR_dataframe(bedfile, out_path, logger, Config):
             counts = int(line_split[2])
             read_counts.append(int(counts))
     PTR_median = smoothing_1(read_counts, window, out_file, bedfile, logger, Config)
+    keep_logging('PTR for Sample %s: %s' % (analysis, PTR_median),
+                 'PTR for Sample %s: %s' % (analysis, PTR_median), logger, 'info')
     perc_bins_matrix = os.path.dirname(bedfile) + "/" + os.path.basename(bedfile)[0:20] + "_perc_bins.csv"
-    generate_perc_coverage_graph(perc_bins_matrix, PTR_median)
+    generate_perc_coverage_graph(perc_bins_matrix, PTR_median, analysis)
     #generate_coverage(bedfile, read_counts)

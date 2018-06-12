@@ -4,20 +4,13 @@
 aligner: bowtie
 # Options for variant_caller: samtoolswithpostalignbam / gatkhaplotypecaller /samtools
 variant_caller: samtools
+########################################################################################################################
 
 # Set bin folder path. Please make sure all the executables are placed in bin folder. Also make sure the path for individual tools are correct.
 [bin_path]
-binbase: /nfs/esnitkin/bin_group/Growth-rate-analysis_bin
+binbase: /home/apirani/bin/
 
-#resources: nodes=1:ppn=12,mem=47gb,walltime=250:00:00
-[scheduler]
-resources: nodes=1:ppn=4,pmem=4000mb,walltime=250:00:00
-large_resources: nodes=1:ppn=12,mem=47gb,walltime=250:00:00
-email: apirani@med.umich.edu
-queue: flux
-flux_account: esnitkin_flux
-notification: ae
-
+########################################################################################################################
 
 # Set Parameters for individual tools. Set the binbase of each tool: This should be the folder name of respective tools where the executables for each resp. tool resides.
 # Set parameter for Trimmomatic
@@ -34,6 +27,7 @@ window_size: 4
 window_size_quality: 20
 minlength: 40
 headcrop_length: 0
+#headcrop_length: 18
 colon: :
 #clean_filenames: forward_paired.fq.gz,forward_unpaired.fq.gz,reverse_paired.fq.gz,reverse_unpaired.fq.gz
 targetlength: 125
@@ -84,7 +78,6 @@ bowtie_bin: /bowtie2-2.2.6/
 cores: 8
 build_cmd: bowtie2-build
 align_cmd: bowtie2
-parameters: -k 1 --non-deterministic --end-to-end --reorder
 
 [vcftools]
 #vcftools_perl_bin: /vcftools_0.1.12b/perl/
