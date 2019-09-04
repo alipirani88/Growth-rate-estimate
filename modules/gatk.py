@@ -8,9 +8,6 @@ from modules.log_modules import keep_logging
 from modules.logging_subprocess import *
 from sys import platform as _platform
 
-
-
-############################################################### GATK: Indel Realignment ####################################################################################################
 def indel_realign(out_marked_sort_bam_rename, reference, out_path, analysis):
     base_cmd = ConfigSectionMap("bin_path", Config)['binbase'] + "/" + ConfigSectionMap("gatk", Config)['gatk_bin'] + "/" + ConfigSectionMap("gatk", Config)['base_cmd']
     print "\n################## GATK: Indel Realignment. ##################\n"
@@ -28,10 +25,7 @@ def indel_realign(out_marked_sort_bam_rename, reference, out_path, analysis):
     print "\n################## END: Indel Realignment. ##################\n"
     return out_indel_realigned
 
-############################################################### END #########################################################################################################################
 
-
-############################################################### GATK: Variant Calling #######################################################################################################
 def gatkhaplotypecaller(out_finalbam, out_path, reference, analysis):
     base_cmd = ConfigSectionMap("bin_path", Config)['binbase'] + "/" + ConfigSectionMap("gatk", Config)['gatk_bin'] + "/" + ConfigSectionMap("gatk", Config)['base_cmd']
     reference_filename = ConfigSectionMap(reference)['ref_path'] + "/" + ConfigSectionMap(reference)['ref_name']
@@ -40,11 +34,7 @@ def gatkhaplotypecaller(out_finalbam, out_path, reference, analysis):
     os.system(cmd)
     final_raw_vcf =  "%s/%s_aln_gatk_raw.vcf" % (out_path, analysis)
     return final_raw_vcf
-############################################################### END #########################################################################################################################
 
-
-
-############################################################### GATK: Variant Filtering #######################################################################################################
 def gatk_filter1(final_raw_vcf, out_path, analysis, reference):
     base_cmd = ConfigSectionMap("bin_path", Config)['binbase'] + "/" + ConfigSectionMap("gatk", Config)['gatk_bin'] + "/" + ConfigSectionMap("gatk", Config)['base_cmd']
     gatk_filter1_parameter_expression = ConfigSectionMap("gatk")['gatk_filter1_parameter_expression']
@@ -55,9 +45,7 @@ def gatk_filter1(final_raw_vcf, out_path, analysis, reference):
     os.system(filter_flag_command)
     gatk_filter1_final_vcf = "%s/%s_filter1_final.vcf" % (out_path, analysis)
     return gatk_filter1_final_vcf
-############################################################### END #########################################################################################################################
 
-############################################################### GATK: Variant Filtering #######################################################################################################
 def gatk_filter2(final_raw_vcf, out_path, analysis, reference, logger, Config):
     base_cmd = ConfigSectionMap("bin_path", Config)['binbase'] + "/" + ConfigSectionMap("gatk", Config)['gatk_bin'] + "/" + ConfigSectionMap("gatk", Config)['base_cmd']
     gatk_filter2_parameter_expression = ConfigSectionMap("gatk", Config)['gatk_filter2_parameter_expression']
@@ -74,11 +62,7 @@ def gatk_filter2(final_raw_vcf, out_path, analysis, reference, logger, Config):
         sys.exit(1)
     gatk_filter2_final_vcf = "%s/%s_filter2_final.vcf" % (out_path, analysis)
     return gatk_filter2_final_vcf
-############################################################### END #########################################################################################################################
 
-
-
-############################################################### GATK: VCF2Fasta #######################################################################################################
 def gatk_vcf2fasta_filter1(only_snp_filter1_vcf_file, out_path, analysis, reference):
     base_cmd = ConfigSectionMap("bin_path", Config)['binbase'] + "/" + ConfigSectionMap("gatk", Config)['gatk_bin'] + "/" + ConfigSectionMap("gatk", Config)['base_cmd']
     vcf2fasta_filter1_cmd = "java -jar %s -R %s -T FastaAlternateReferenceMaker -o %s_filter1.fasta --variant %s" % (base_cmd, reference, only_snp_filter1_vcf_file, only_snp_filter1_vcf_file)
@@ -93,9 +77,7 @@ def gatk_vcf2fasta_filter1(only_snp_filter1_vcf_file, out_path, analysis, refere
         os.system(change_header_cmd)
     gatk_vcf2fasta_filter1_file = "%s_filter1.fasta" % (only_snp_filter1_vcf_file)
     return gatk_vcf2fasta_filter1_file
-############################################################### END #########################################################################################################################
 
-############################################################### GATK: VCF2Fasta #######################################################################################################
 def gatk_vcf2fasta_filter2(only_snp_filter2_vcf_file, out_path, analysis, reference, logger, Config):
     base_cmd = ConfigSectionMap("bin_path", Config)['binbase'] + "/" + ConfigSectionMap("gatk", Config)['gatk_bin'] + "/" + ConfigSectionMap("gatk", Config)['base_cmd']
     vcf2fasta_filter2_cmd = "java -jar %s -R %s -T FastaAlternateReferenceMaker -o %s_filter2.fasta --variant %s" % (base_cmd, reference, only_snp_filter2_vcf_file, only_snp_filter2_vcf_file)
@@ -125,14 +107,10 @@ def gatk_vcf2fasta_filter2(only_snp_filter2_vcf_file, out_path, analysis, refere
             sys.exit(1)
     gatk_vcf2fasta_filter2_file = "%s_filter2.fasta" % (only_snp_filter2_vcf_file)
     return gatk_vcf2fasta_filter2_file
-############################################################### END #########################################################################################################################
 
-
-
-############################################################### GATK: DepthOfCoverage #######################################################################################################
 def gatk_DepthOfCoverage(out_sorted_bam, out_path, analysis_name, reference, logger, Config):
     base_cmd = ConfigSectionMap("bin_path", Config)['binbase'] + "/" + ConfigSectionMap("gatk", Config)['gatk_bin'] + "/" + ConfigSectionMap("gatk", Config)['base_cmd']
-    cmd = "java -jar %s -T DepthOfCoverage -R %s -o %s/%s_depth_of_coverage -I %s --summaryCoverageThreshold 15" % (base_cmd, reference, out_path, analysis_name, out_sorted_bam)
+    cmd = "java -jar %s -T DepthOfCoverage -R %s -o %s/%s_depth_of_coverage -I %s --summaryCoverageThreshold 1 --summaryCoverageThreshold 5 --summaryCoverageThreshold 10 --summaryCoverageThreshold 15 --summaryCoverageThreshold 20 --summaryCoverageThreshold 25 --minBaseQuality 15" % (base_cmd, reference, out_path, analysis_name, out_sorted_bam)
     keep_logging("COMMAND: " + cmd, cmd, logger, 'debug')
     try:
         call(cmd, logger)
@@ -142,8 +120,3 @@ def gatk_DepthOfCoverage(out_sorted_bam, out_path, analysis_name, reference, log
         sys.exit(1)
     gatk_depth_of_coverage_file = "%s/%s_depth_of_coverage" % (out_path, analysis_name)
     keep_logging('GATK Depth of Coverage file: {}'.format(gatk_depth_of_coverage_file), 'GATK Depth of Coverage file: {}'.format(gatk_depth_of_coverage_file), logger, 'debug')
-############################################################### GATK: DepthOfCoverage #######################################################################################################
-
-
-
-

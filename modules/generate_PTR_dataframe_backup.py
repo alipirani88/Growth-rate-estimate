@@ -57,8 +57,8 @@ def smoothing_1(read_counts, window, out_path, bedfile, logger, Config):
     for i in xrange(0, len(read_counts), 100):
         start = i
         end = i + window
-	#print read_counts[start:end]
-	#print read_counts[start:end].count(0)
+        #print read_counts[start:end]
+	    #print read_counts[start:end].count(0)
         if read_counts[start:end].count(0) == 10000:
             zero_bins += 1
         raw_count_sliding_window_array.append(read_counts[start:end])
@@ -77,8 +77,8 @@ def smoothing_1(read_counts, window, out_path, bedfile, logger, Config):
         start = i
         end = i + window
         print len(moving_sum_array[start:end])
-	#5000 changed to 100
-	if len(moving_sum_array[start:end]) > 1000:
+        #5000 changed to 100
+        if len(moving_sum_array[start:end]) > 1000:
             median_sliding_window_array.append(statistics.median(moving_sum_array[start:end]))
 
     ## Step 4

@@ -53,14 +53,14 @@ def pipeline(args, logger):
     reference = ConfigSectionMap(args.index, Config)['ref_path'] + "/" + ConfigSectionMap(args.index, Config)['ref_name']
     keep_logging('Getting Reference Genome name from config file: {}'.format(reference), 'Getting Reference Genome name from config file: {}'.format(reference), logger, 'info')
 
-    # Check IF FASTQ files exists
-    if args.type != "PE" and args.type != "BAM":
-        reverse_raw = "None"
-        file_exists(args.forward_raw, args.forward_raw, reference)
-    elif args.type != "PE" and args.type != "SE":
-        print "BAM type... Not Integrated... continue"
-    else:
-        file_exists(args.forward_raw, args.reverse_raw, reference)
+    # # Check IF FASTQ files exists
+    # if args.type != "PE" and args.type != "BAM":
+    #     reverse_raw = "None"
+    #     file_exists(args.forward_raw, args.forward_raw, reference)
+    # elif args.type != "PE" and args.type != "SE":
+    #     print "BAM type... Not Integrated... continue"
+    # else:
+    #     file_exists(args.forward_raw, args.reverse_raw, reference)
 
     # Check Java Version
     java_check()
@@ -135,9 +135,15 @@ def pipeline(args, logger):
             out_sam = align_reads()
             out_sorted_bam = post_align(out_sam)
             final_coverage_file = bedgraph(out_sorted_bam)
-            ptr(final_coverage_file)
             stats(out_sorted_bam)
-
+            ptr(final_coverage_file)
+            #stats(out_sorted_bam)
+        if steps_list[0] == "ptr":
+            final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
+            out_sorted_bam = "%s/%s_aln_sort.bam" % (args.output_folder, args.analysis_name)
+            #stats(out_sorted_bam)
+            final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
+            ptr(final_coverage_file)
     # Run individual pipeline steps based on the first value found in steps_list array: clean, align, post-align, bedgraph, ptr, stats etc
     else:
 
@@ -172,8 +178,9 @@ def pipeline(args, logger):
         elif steps_list[0] == "ptr":
             final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
             out_sorted_bam = "%s/%s_aln_sort.bam" % (args.output_folder, args.analysis_name)
-            ptr(final_coverage_file)
             stats(out_sorted_bam)
+            ptr(final_coverage_file)
+
 
         elif steps_list[0] == "stats":
             out_sorted_bam = "%s/%s_aln_sort.bam" % (args.output_folder, args.analysis_name)
