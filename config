@@ -22,7 +22,8 @@ notification: ae
 # Set Parameters for individual tools. Set the binbase of each tool: This should be the folder name of respective tools where the executables for each resp. tool resides.
 # Set parameter for Trimmomatic
 [Trimmomatic]
-trimmomatic_bin: /Trimmomatic/
+trimmomatic_bin: /Trimmomatic-0.39/
+#trimmomatic_bin: /Trimmomatic/
 adaptor_filepath: adapters/TruSeq3-Nextera_PE_combined.fa
 seed_mismatches: 2
 palindrome_clipthreshold: 30
@@ -44,7 +45,7 @@ r_p: reverse_paired.fq.gz
 r_up: reverse_unpaired.fq.gz
 
 [bwa]
-bwa_bin: /bwa-0.7.12/
+bwa_bin: /bwa-0.7.17/
 cores: 8
 base_cmd: bwa
 algorithm: mem
@@ -53,7 +54,7 @@ RG_header: -R
 Mark_splithits: -M
 
 [samtools]
-samtools_bin: /samtools-1.2/
+samtools_bin: /samtools-1.11/
 base_cmd: samtools
 #minimum mapping quality
 #change parameter S to -t SP and D to -t DP
@@ -62,12 +63,12 @@ faiindex: faidx
 #-q30 -B -E -C50
 
 [bcftools]
-bcftools_bin: /bcftools-1.2/
+bcftools_bin: /bcftools-1.11/
 base_cmd: bcftools
 call_parameters: -vg
 
 [picard]
-picard_bin: /picard-tools-1.130/
+picard_bin: /picard-tools-2.24.0/
 base_cmd: picard.jar
 
 [gatk]
@@ -80,7 +81,7 @@ gatk_filter2_parameter_expression = FQ < 0.025 && MQ > 50 && QUAL > 100 && DP > 
 #changed gatk_filter2_parameter_expression DP 15 from 10 that was used in VRE samples.
 
 [bowtie]
-bowtie_bin: /bowtie2-2.2.6/
+bowtie_bin: /bowtie2-2.3.5/
 cores: 8
 build_cmd: bowtie2-build
 align_cmd: bowtie2
@@ -98,7 +99,7 @@ qualimap_bin: /qualimap_v2.1/
 base_cmd: qualimap
 
 [bedtools]
-bedtools_bin: /bedtools2-master/bin/
+bedtools_bin: /bedtools_v2.29.2/
 base_cmd: bedtools
 
 ########################################################################################################################
@@ -109,7 +110,7 @@ base_cmd: bedtools
 # Name of reference genome fasta file.
 Ref_Name: EscherichiacoliCFT073.fna
 # path to the reference genome fasta file.
-Ref_Path: /scratch/esnitkin_fluxod/apirani/Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/CFT073/
+Ref_Path: /nfs/esnitkin/Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/CFT073/
 
 [EFC7]
 # Name of reference genome fasta file.
@@ -130,7 +131,6 @@ Ref_Name: ABU83972.fasta
 Ref_Path: /home/apirani/bin/reference/ABU83972
 
 ########################################################################################################################
-
 ########################################################################################################################
 # Serratia PTR project reference genomes
 # Reference Genome to be used for pipeline
@@ -139,25 +139,25 @@ Ref_Path: /home/apirani/bin/reference/ABU83972
 # Name of reference genome fasta file.
 Ref_Name: UMH9.fasta
 # path to the reference genome fasta file.
-Ref_Path: /scratch/esnitkin_fluxod/apirani/Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/UMH9/
+Ref_Path: /nfs/esnitkin/Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/UMH9/
 
 [UMH14]
 # Name of reference genome fasta file.
 Ref_Name: UMH14.fasta
 # path to the reference genome fasta file.
-Ref_Path: /scratch/esnitkin_fluxod/apirani/Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/UMH14/
+Ref_Path: /nfs/esnitkin//Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/UMH14/
 
 [AB0057]
 # Name of reference genome fasta file.
 Ref_Name: AB0057.fasta
 # path to the reference genome fasta file.
-Ref_Path: /scratch/esnitkin_fluxod/apirani/Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/AB0057/
+Ref_Path: /nfs/esnitkin//Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/AB0057/
 
 [UM-CRE-14]
 # Name of reference genome fasta file.
 Ref_Name: UM-CRE-14.fasta
 # path to the reference genome fasta file.
-Ref_Path: /scratch/esnitkin_fluxod/apirani/Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/UM-CRE-14/
+Ref_Path: /nfs/esnitkin//Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/UM-CRE-14/
 
 [KPNIH1]
 # Name of reference genome fasta file.
@@ -167,3 +167,9 @@ Ref_Path: /nfs/esnitkin/bin_group/variant_calling_bin/reference/KPNIH1/
 ########################################################################################################################
 
 
+#Mice
+[GRCm39]
+# Name of reference genome fasta file.
+Ref_Name: GCA_000001635.9_GRCm39_full_analysis_set.fasta
+# path to the reference genome fasta file.
+Ref_Path: /nfs/esnitkin/bin_group/variant_calling_bin/reference/GRCm39/

@@ -2,7 +2,7 @@
 
 #### This pipeline calculates peak to through ratio(PTR; ratio of copy numbers at origin of replication to terminus) from  mapped reads coverage.
 
-The algorithm follows the procedure as described in this publication: Growth dynamics of gut microbiota in health and disease inferred from single metagenomic samples http://science.sciencemag.org/content/349/6252/1101.long with a few minor changes.
+The algorithm follows the procedure as described in the publication: Growth dynamics of gut microbiota in health and disease inferred from single metagenomic samples http://science.sciencemag.org/content/349/6252/1101.long with a few minor changes.
 
 #### The pipeline runs sequentially as follows:
 ***
@@ -16,23 +16,8 @@ The algorithm follows the procedure as described in this publication: Growth dyn
 **Output**:
 ***
 
-The pipeline generates various output files from different tools at different steps. The most notable ones are:
+The pipeline generates various alignment and bed output files from different tools at different steps that can be used for manual inspection. The final PTR results can be found in:
 
-- ***Clean reads***: *.fq.gz files from trimmomatic.
-
-- ***Alignment files***: analysisname_aln.sam and analysisname_aln.bam from Bowtie2, analysisname_aln_marked.bam from GATK MarkDuplicates, and finally a sorted BAM from marked bam file analysisname_aln_sort.bam. 
-
-- ***Bed file***: Bedtools genome coverage file analysisname_coverage.bed
-
-- ***coverage_graph.R*** script to plot sequence coverage graph with PTR values
-
-Example:
-
-<<<<<<< HEAD
-
-=======
-![](/perc_coverage_graph.png?raw=true)
->>>>>>> 9e55eedb374d38fa24b7e41530494eb68eb8cd0f
-
-
+- ***prefix_PTR.txt*** Estimated PTR value for the coverage graph
+- ***prefix_perc_coverage_graph.R*** script to plot sequence coverage graph with PTR values
 

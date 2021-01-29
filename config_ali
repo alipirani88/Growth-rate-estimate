@@ -109,7 +109,7 @@ base_cmd: bedtools
 # Name of reference genome fasta file.
 Ref_Name: EscherichiacoliCFT073.fna
 # path to the reference genome fasta file.
-Ref_Path: /scratch/esnitkin_fluxod/apirani/Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/CFT073/
+Ref_Path: /nfs/esnitkin/Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/CFT073/
 
 [EFC7]
 # Name of reference genome fasta file.
@@ -139,25 +139,25 @@ Ref_Path: /home/apirani/bin/reference/ABU83972
 # Name of reference genome fasta file.
 Ref_Name: UMH9.fasta
 # path to the reference genome fasta file.
-Ref_Path: /scratch/esnitkin_fluxod/apirani/Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/UMH9/
+Ref_Path: /nfs/esnitkin/Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/UMH9/
 
 [UMH14]
 # Name of reference genome fasta file.
 Ref_Name: UMH14.fasta
 # path to the reference genome fasta file.
-Ref_Path: /scratch/esnitkin_fluxod/apirani/Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/UMH14/
+Ref_Path: /nfs/esnitkin/Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/UMH14/
 
 [AB0057]
 # Name of reference genome fasta file.
 Ref_Name: AB0057.fasta
 # path to the reference genome fasta file.
-Ref_Path: /scratch/esnitkin_fluxod/apirani/Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/AB0057/
+Ref_Path: /nfs/esnitkin/Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/AB0057/
 
 [UM-CRE-14]
 # Name of reference genome fasta file.
 Ref_Name: UM-CRE-14.fasta
 # path to the reference genome fasta file.
-Ref_Path: /scratch/esnitkin_fluxod/apirani/Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/UM-CRE-14/
+Ref_Path: /nfs/esnitkin/Project_Serratia_PTR/Analysis/2018_06_11_PTR_analysis/reference_genome/UM-CRE-14/
 
 [KPNIH1]
 # Name of reference genome fasta file.
