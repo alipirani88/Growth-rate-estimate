@@ -17,7 +17,6 @@ The algorithm follows the procedure as described in the publication: Growth dyna
 ***
 
 The pipeline generates various alignment and bed output files from different tools at different steps that can be used for manual inspection. The final PTR results can be found in:
-<<<<<<< HEAD
 
 - ***prefix_PTR.txt*** Estimated PTR value for the coverage graph
 - ***prefix_perc_coverage_graph.R*** script to plot sequence coverage graph with PTR values
@@ -40,11 +39,6 @@ Create two new environments - varcall and varcall_gubbins
 conda env create -f Growth-rate-analysis/Growth-rate-analysis_env.yml -n Growth-rate-analysis
 
 ```
-=======
-
-- ***prefix_PTR.txt*** Estimated PTR value for the coverage graph
-- ***prefix_perc_coverage_graph.R*** script to plot sequence coverage graph with PTR values
->>>>>>> 68faef6293a969d834d3ac1aaf652402cf0c2a6e
 
 Check installation
 
