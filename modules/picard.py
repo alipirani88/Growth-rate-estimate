@@ -8,10 +8,14 @@ def markduplicates(out_sorted_bam, out_path, analysis, files_to_delete, logger, 
     # base_cmd = ConfigSectionMap("bin_path", Config)['binbase'] + "/" + ConfigSectionMap("picard", Config)['picard_bin'] + "/" + ConfigSectionMap("picard", Config)['base_cmd']
     base_cmd = ConfigSectionMap("picard", Config)['base_cmd']
     keep_logging('Removing PCR duplicates using PICARD', 'Removing PCR duplicates using PICARD', logger, 'info')
+<<<<<<< HEAD
     # cmd = "java -Xmx1G -jar %s MarkDuplicates REMOVE_DUPLICATES=true INPUT=%s OUTPUT=%s/%s_aln_marked.bam METRICS_FILE=%s/%s_markduplicates_metrics CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT" % (base_cmd, out_sorted_bam, out_path, analysis, out_path, analysis)
     cmd = "%s MarkDuplicates REMOVE_DUPLICATES=true INPUT=%s OUTPUT=%s/%s_aln_marked.bam METRICS_FILE=%s/%s_markduplicates_metrics CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT" % (
     base_cmd, out_sorted_bam, out_path, analysis, out_path, analysis)
 
+=======
+    cmd = "java -Xmx1G -jar %s MarkDuplicates REMOVE_DUPLICATES=true INPUT=%s OUTPUT=%s/%s_aln_marked.bam METRICS_FILE=%s/%s_markduplicates_metrics CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT" % (base_cmd, out_sorted_bam, out_path, analysis, out_path, analysis)
+>>>>>>> 68faef6293a969d834d3ac1aaf652402cf0c2a6e
     keep_logging("COMMAND: " + cmd, cmd, logger, 'debug')
     try:
         call(cmd, logger)

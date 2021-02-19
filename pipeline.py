@@ -132,7 +132,13 @@ def pipeline(args, logger):
             clean()
             out_sam = align_reads()
             out_sorted_bam = post_align(out_sam)
+<<<<<<< HEAD
             final_coverage_file = bedgraph(out_sorted_bam)
+=======
+            stats(out_sorted_bam)
+            final_coverage_file = bedgraph(out_sorted_bam)
+            #stats(out_sorted_bam)
+>>>>>>> 68faef6293a969d834d3ac1aaf652402cf0c2a6e
             ptr(final_coverage_file)
             stats(out_sorted_bam)
         if steps_list[0] == "ptr":

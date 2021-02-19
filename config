@@ -69,7 +69,11 @@ call_parameters: -vg
 
 [picard]
 picard_bin: /picard-tools-2.24.0/
+<<<<<<< HEAD
 base_cmd: picard
+=======
+base_cmd: picard.jar
+>>>>>>> 68faef6293a969d834d3ac1aaf652402cf0c2a6e
 
 [gatk]
 gatk_bin: /GenomeAnalysisTK-3.3-0/
