@@ -2,8 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04f7f024-4b9c-4f09-95c5-c49a5c3585c0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/growth_rate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config" beforeDir="false" afterPath="$PROJECT_DIR$/config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config_ali" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config_backup" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/growth_rate.py" beforeDir="false" afterPath="$PROJECT_DIR$/growth_rate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/bedtools.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/bedtools.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/bowtie.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/bowtie.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/gatk.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/gatk.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/generate_PTR_dataframe.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/generate_PTR_dataframe.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/generate_PTR_dataframe_backup.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/picard.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/picard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/samtools.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/samtools.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/stages.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/stages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/trim.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/trim.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/perc_coverage_graph.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
     </list>
     <ignored path="Growth-rate-analysis.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,26 +40,8 @@
       <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5943">
-              <caret line="293" selection-start-line="293" selection-end-line="293" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2835">
-              <caret line="135" column="120" selection-start-line="135" selection-start-column="120" selection-end-line="135" selection-end-column="120" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="growth_rate.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/growth_rate.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="-6446">
+              <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
               <folding>
                 <element signature="e#26#36#0" expanded="true" />
               </folding>
@@ -52,25 +49,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="stages.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/stages.py">
+      <file leaf-file-name="growth_rate.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/growth_rate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="30" column="30" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="30" />
+            <state relative-caret-position="8568">
+              <caret line="388" lean-forward="true" selection-start-line="388" selection-end-line="388" />
               <folding>
-                <element signature="e#26#70#0" expanded="true" />
+                <element signature="e#26#36#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bowtie.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/bowtie.py">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="696">
+                <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="12" column="95" selection-start-line="12" selection-start-column="58" selection-end-line="12" selection-end-column="95" />
+            <state relative-caret-position="1491">
+              <caret line="71" column="16" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="stages.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/stages.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1428">
+              <caret line="81" selection-start-line="81" selection-end-line="81" />
               <folding>
-                <element signature="e#26#35#0" expanded="true" />
+                <element signature="e#26#70#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -79,17 +97,17 @@
       <file leaf-file-name="generate_PTR_dataframe.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/generate_PTR_dataframe.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="30" column="26" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="26" />
+            <state relative-caret-position="-356">
+              <caret line="109" column="64" selection-start-line="109" selection-start-column="64" selection-end-line="109" selection-end-column="64" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bedtools.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/bedtools.py">
+      <file leaf-file-name="bowtie.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/bowtie.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="9" column="23" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="23" />
+            <state relative-caret-position="84">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
               <folding>
                 <element signature="e#26#35#0" expanded="true" />
               </folding>
@@ -97,11 +115,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="generate_R_scripts.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/generate_R_scripts.py">
+      <file leaf-file-name="samtools.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/samtools.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+            <state relative-caret-position="1806">
+              <caret line="89" column="14" selection-start-line="89" selection-start-column="14" selection-end-line="89" selection-end-column="14" />
+              <folding>
+                <element signature="e#25#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="picard.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/picard.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="630">
+              <caret line="33" column="11" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
+              <folding>
+                <element signature="e#25#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gatk.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/gatk.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="10" column="24" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="24" />
+              <folding>
+                <element signature="e#26#35#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -115,6 +160,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>gatk_DepthOfCoverage</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -122,17 +172,28 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/modules/generate_R_scripts.py" />
-        <option value="$PROJECT_DIR$/modules/generate_PTR_dataframe.py" />
         <option value="$PROJECT_DIR$/pipeline.py" />
         <option value="$PROJECT_DIR$/config" />
+        <option value="$PROJECT_DIR$/modules/trim.py" />
+        <option value="$PROJECT_DIR$/modules/stages.py" />
+        <option value="$PROJECT_DIR$/modules/samtools.py" />
+        <option value="$PROJECT_DIR$/config" />
+        <option value="$PROJECT_DIR$/modules/picard.py" />
+        <option value="$PROJECT_DIR$/modules/gatk.py" />
+        <option value="$PROJECT_DIR$/pipeline.py" />
+        <option value="$PROJECT_DIR$/modules/bowtie.py" />
+        <option value="$PROJECT_DIR$/modules/bedtools.py" />
+        <option value="$PROJECT_DIR$/modules/generate_PTR_dataframe.py" />
         <option value="$PROJECT_DIR$/growth_rate.py" />
+        <option value="$PROJECT_DIR$/growth_rate.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="2560" />
-    <option name="height" value="1322" />
+    <option name="height" value="970" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -145,6 +206,11 @@
             <path>
               <item name="Growth-rate-analysis" type="b2602c69:ProjectViewProjectNode" />
               <item name="Growth-rate-analysis" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Growth-rate-analysis" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Growth-rate-analysis" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -315,9 +381,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="2560" height="1322" extended-state="6" />
+    <frame x="0" y="23" width="2560" height="970" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12787926" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1310564" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="right" id="R Graphics" order="3" />
@@ -352,6 +419,13 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/modules/bedtools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5943">
@@ -397,9 +471,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="9" column="23" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="23" />
-          <folding>
-            <element signature="e#26#35#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -414,9 +485,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="e#26#36#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -451,9 +519,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret line="9" column="23" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="23" />
-          <folding>
-            <element signature="e#26#35#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -502,9 +567,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret line="9" column="23" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="23" />
-          <folding>
-            <element signature="e#26#35#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -552,9 +614,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret line="9" column="23" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="23" />
-          <folding>
-            <element signature="e#26#35#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -602,9 +661,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret line="9" column="23" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="23" />
-          <folding>
-            <element signature="e#26#35#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -644,9 +700,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret line="9" column="23" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="23" />
-          <folding>
-            <element signature="e#26#35#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -661,9 +714,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret line="9" column="23" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="23" />
-          <folding>
-            <element signature="e#26#35#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -674,64 +724,111 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/bedtools.py">
+    <entry file="file://$PROJECT_DIR$/modules/trim.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="23" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="23" />
-          <folding>
-            <element signature="e#26#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/generate_PTR_dataframe.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="30" column="26" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/bowtie.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="95" selection-start-line="12" selection-start-column="58" selection-end-line="12" selection-end-column="95" />
-          <folding>
-            <element signature="e#26#35#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1365">
+          <caret line="66" column="36" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/stages.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="30" column="30" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="30" />
+        <state relative-caret-position="1428">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
           <folding>
             <element signature="e#26#70#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
+    <entry file="file://$PROJECT_DIR$/modules/samtools.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5943">
-          <caret line="293" selection-start-line="293" selection-end-line="293" />
+        <state relative-caret-position="1806">
+          <caret line="89" column="14" selection-start-line="89" selection-start-column="14" selection-end-line="89" selection-end-column="14" />
+          <folding>
+            <element signature="e#25#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/picard.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="33" column="11" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
+          <folding>
+            <element signature="e#25#34#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2835">
-          <caret line="135" column="120" selection-start-line="135" selection-start-column="120" selection-end-line="135" selection-end-column="120" />
+        <state relative-caret-position="1491">
+          <caret line="71" column="16" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/gatk.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="10" column="24" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="24" />
+          <folding>
+            <element signature="e#26#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/bowtie.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#26#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/bedtools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/generate_PTR_dataframe.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-356">
+          <caret line="109" column="64" selection-start-line="109" selection-start-column="64" selection-end-line="109" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6446">
+          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+          <folding>
+            <element signature="e#26#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/growth_rate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="8568">
+          <caret line="388" lean-forward="true" selection-start-line="388" selection-end-line="388" />
           <folding>
             <element signature="e#26#36#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="696">
+            <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

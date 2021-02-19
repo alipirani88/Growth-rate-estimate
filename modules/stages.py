@@ -20,7 +20,6 @@ def prepare_readgroup(forward_read, aligner, logger):
     keep_logging('Preparing ReadGroup Info', 'Preparing ReadGroup Info', logger, 'info')
     samplename = os.path.basename(forward_read)
     if forward_read.endswith(".gz"):
-        ###
         output = gzip.open(forward_read, 'rb')
         firstLine = output.readline()
         split_field = re.split(r":",firstLine)
@@ -41,58 +40,19 @@ def prepare_readgroup(forward_read, aligner, logger):
         split_field = re.split(r":",firstLine)
         split_field = "\"" + "@RG" + "\\tID:" + split_field[1] + "\\tSM:" + samplename + "\\tLB:1\\tPL:Illumina" + "\""
         return split_field
-        print "\n################## End: ReadGroup Preparation ##################\n"
 
 
     elif forward_read.endswith(".fq"):
-        ###
         output = open(forward_read, 'r')
         firstLine = output.readline()
         split_field = re.split(r":",firstLine)
         split_field = "\"" + "@RG" + "\\tID:" + split_field[1] + "\\tSM:" + samplename + "\\tLB:1\\tPL:Illumina" + "\""
         return split_field
-        print "\n################## End: ReadGroup Preparation ##################\n"
 
 ## Raw data Pre-processing using Trimmomatic ##
 def trimmomatic(input1, input2, out_path, crop, logger, Config):
     trim(input1, input2, out_path, crop, logger, Config)
-## End ##
 
-## bwa, smalt, bowtie: Alignment ##
-# def align(bam_input, out_path, ref_index, split_field, analysis, files_to_delete, logger, Config, type):
-#     reference = ConfigSectionMap(ref_index, Config)['ref_path'] + "/" + ConfigSectionMap(ref_index, Config)['ref_name']
-#     forward_clean = out_path + "/" + ConfigSectionMap("Trimmomatic", Config)['f_p']
-#     reverse_clean = out_path + "/" + ConfigSectionMap("Trimmomatic", Config)['r_p']
-#     aligner = ConfigSectionMap("pipeline", Config)['aligner']
-#     if aligner == "bwa":
-#         base_cmd = ConfigSectionMap("bin_path", Config)['binbase'] + "/" + ConfigSectionMap("bwa", Config)['bwa_bin'] + "/" + ConfigSectionMap("bwa", Config)['base_cmd']
-#         #check if the input is bam or fastq
-#         if bam_input:
-#             if bam_input.endswith(".bam"):
-#                 #do alignment of bam and all here
-#                 print "bam alignment"
-#             else:
-#                 #throw error
-#                 print "error"
-#         else:
-#             out_file = align_bwa(base_cmd,forward_clean, reverse_clean, out_path, reference, split_field, analysis, files_to_delete, logger, Config, type)
-#             return out_file
-#     elif aligner == "smalt":
-#         print "Smalt addition pending"
-#         exit()
-#         usage()
-#     elif aligner == "bowtie":
-#         base_cmd = ConfigSectionMap("bin_path")['binbase'] + "/" + ConfigSectionMap("bowtie")['bowtie_bin'] + "/" + ConfigSectionMap("bowtie")['align_cmd']
-#         if bam_input:
-#             if bam_input.endswith(".bam"):
-#                 #do alignment of bam and all here
-#                 print "bam alignment"
-#             else:
-#                 #throw error
-#                 print "error"
-#         else:
-#             out_sam = align_bowtie(base_cmd,forward_clean, reverse_clean, out_path, reference, split_field, analysis, files_to_delete, logger, Config, type)
-#             return out_sam
 
 """ bwa, smalt, bowtie: Alignment """
 def align(out_path, ref_index, split_field, analysis, files_to_delete, logger, Config, type):
@@ -113,13 +73,12 @@ def align(out_path, ref_index, split_field, analysis, files_to_delete, logger, C
         usage()
     elif aligner == "bowtie":
         parameters = ConfigSectionMap("bowtie", Config)['parameters']
-        base_cmd = ConfigSectionMap("bin_path", Config)['binbase'] + "/" + ConfigSectionMap("bowtie", Config)['bowtie_bin'] + "/" + ConfigSectionMap("bowtie", Config)['align_cmd']
+        #base_cmd = ConfigSectionMap("bin_path", Config)['binbase'] + "/" + ConfigSectionMap("bowtie", Config)['bowtie_bin'] + "/" + ConfigSectionMap("bowtie", Config)['align_cmd']
+        base_cmd = ConfigSectionMap("bowtie", Config)['align_cmd']
         out_file = align_bowtie(base_cmd,forward_clean, reverse_clean, forward_unpaired, reverse_unpaired, out_path, reference, split_field, analysis, files_to_delete, logger, Config, type, parameters)
         return out_file
         exit()
         usage()
-
-
 
 ## samtools: Post-Alignment SAM/BAM conversion, sort, index ##
 def prepare_bam(out_sam, out_path, analysis, files_to_delete, logger, Config):
@@ -134,8 +93,6 @@ def prepare_bam(out_sam, out_path, analysis, files_to_delete, logger, Config):
         exit()
     else:
         return out_sort_bam
-## End ##
-
 
 ## Statistics Report ##
 def alignment_stats(out_sorted_bam, out_path, analysis, logger, Config):
@@ -146,8 +103,6 @@ def alignment_stats(out_sorted_bam, out_path, analysis, logger, Config):
 def qualimap(out_sorted_bam, out_path, analysis, logger, Config):
     qualimap_report = bamqc(out_sorted_bam, out_path, analysis, logger, Config)
     return qualimap_report
-## END ##
-
 
 ## Remove SAM files ##
 def remove_files(analysis, out_path, out_sam, out_sorted_bam):
@@ -155,5 +110,5 @@ def remove_files(analysis, out_path, out_sam, out_sorted_bam):
     if os.path.isfile(out_sorted_bam):
         raw_bam_file = "%s/%s_aln.bam" % (out_path, analysis)
         os.remove(raw_bam_file)
-## END ##
+
 
