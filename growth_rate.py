@@ -35,6 +35,7 @@ def parser():
     required.add_argument('-o', action='store', dest="output_folder", help='Output Path ending with output directory name to save the results', required=True)
     required.add_argument('-analysis', action='store', dest="analysis_name", help='Unique analysis name to save the results', required=True)
     required.add_argument('-index', action='store', dest="index", help='Reference Index Name. Change this argument in config file and mention the reference header name such as KP_NTUH_chr/KPNIH1/KPNIH32.', required=True)
+    optional.add_argument('-adapter', action='store', dest="adapter", help='Path to adapter fasta file')
     optional.add_argument('-c', action='store', dest="croplength", help='Crop Length in case needed')
     #optional.add_argument('-f', action='store', dest="bam_input", help='Input Bam')
     return parser
@@ -73,11 +74,11 @@ def pipeline(args, logger):
                      'START: Pre-Processing Raw reads using Trimmomatic', logger, 'info')
         if args.type == "PE":
             # print "skip trimming"
-            trimmomatic(args.forward_raw, args.reverse_raw, args.output_folder, args.croplength, logger, Config)
+            trimmomatic(args.forward_raw, args.reverse_raw, args.output_folder, args.croplength, args.adapter, logger, Config)
         else:
             reverse_raw = "None"
             # print "skip trimming"
-            trimmomatic(args.forward_raw, reverse_raw, args.output_folder, args.croplength, logger, Config)
+            trimmomatic(args.forward_raw, reverse_raw, args.output_folder, args.croplength, args.adapter, logger, Config)
         keep_logging('END: Pre-Processing Raw reads using Trimmomatic\n',
                      'END: Pre-Processing Raw reads using Trimmomatic\n', logger, 'info')
 
@@ -133,14 +134,16 @@ def pipeline(args, logger):
             out_sam = align_reads()
             out_sorted_bam = post_align(out_sam)
             final_coverage_file = bedgraph(out_sorted_bam)
-            ptr(final_coverage_file)
             stats(out_sorted_bam)
+            ptr(final_coverage_file)
+
         if steps_list[0] == "ptr":
             final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
             out_sorted_bam = "%s/%s_aln_sort.bam" % (args.output_folder, args.analysis_name)
             final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
-            ptr(final_coverage_file)
             stats(out_sorted_bam)
+            ptr(final_coverage_file)
+
     # Run individual pipeline steps based on the first value found in steps_list array: clean, align, post-align, bedgraph, ptr, stats etc
     else:
 
@@ -149,28 +152,31 @@ def pipeline(args, logger):
             out_sam = align_reads()
             out_sorted_bam = post_align(out_sam)
             final_coverage_file = bedgraph(out_sorted_bam)
-            ptr(final_coverage_file)
             stats(out_sorted_bam)
+            ptr(final_coverage_file)
+
 
         elif steps_list[0] == "align":
             out_sam = align_reads()
             out_sorted_bam = post_align(out_sam)
             final_coverage_file = bedgraph(out_sorted_bam)
-            ptr(final_coverage_file)
             stats(out_sorted_bam)
+            ptr(final_coverage_file)
 
         elif steps_list[0] == "post-align":
             out_sam = "%s/%s_aln.sam" % (args.output_folder, args.analysis_name)
             out_sorted_bam = post_align(out_sam)
             final_coverage_file = bedgraph(out_sorted_bam)
-            ptr(final_coverage_file)
             stats(out_sorted_bam)
+            ptr(final_coverage_file)
+
 
         elif steps_list[0] == "bedgraph":
             out_sorted_bam = "%s/%s_aln_sort.bam" % (args.output_folder, args.analysis_name)
             final_coverage_file = bedgraph(out_sorted_bam)
-            ptr(final_coverage_file)
             stats(out_sorted_bam)
+            ptr(final_coverage_file)
+
 
         elif steps_list[0] == "ptr":
             final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)

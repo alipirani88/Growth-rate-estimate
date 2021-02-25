@@ -36,7 +36,7 @@ def calculate_per_of_reads(median_sliding_window_array, bedfile):
     out = out.strip()
     out_split = out.split(' ')
     mapped_reads = out_split[0]
-    print "The no of mapped reads are: %s" % mapped_reads
+    #print "The no of mapped reads are: %s" % mapped_reads
     out_file = os.path.dirname(bedfile) + "/" + os.path.basename(bedfile)[0:20] + "_perc_bins.csv"
     with open(out_file, 'w') as out:
         header = "bin,count\n"
@@ -96,7 +96,7 @@ def smoothing_1(read_counts, window, out_path, bedfile, logger, Config):
         out.write(str(out_path) + ' Peak and trough values:\t' + str(peak) + '\t' + str(through) + '\n')
     out.close()
 
-    print "%s %s" % (median_sliding_window_array[397], median_sliding_window_array[130])
+
 
     with open(out_path, 'w') as out:
         header = "bin,count\n"

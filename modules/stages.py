@@ -50,8 +50,8 @@ def prepare_readgroup(forward_read, aligner, logger):
         return split_field
 
 ## Raw data Pre-processing using Trimmomatic ##
-def trimmomatic(input1, input2, out_path, crop, logger, Config):
-    trim(input1, input2, out_path, crop, logger, Config)
+def trimmomatic(input1, input2, out_path, crop, adapter, logger, Config):
+    trim(input1, input2, out_path, crop, adapter, logger, Config)
 
 
 """ bwa, smalt, bowtie: Alignment """

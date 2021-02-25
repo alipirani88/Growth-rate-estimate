@@ -1,5 +1,4 @@
 __author__ = 'alipirani'
-
 import sys
 import os
 import argparse
@@ -117,6 +116,7 @@ def pipeline(args, logger):
     def stats(out_sorted_bam):
         keep_logging('START: Generating Statistics Reports', 'START: Generating Statistics Reports', logger, 'info')
         alignment_stats_file = alignment_stats(out_sorted_bam, args.output_folder, args.analysis_name, logger, Config)
+        # Commented out. These methods are for debugging and troubleshooting purpose
         # gatk_DepthOfCoverage(out_sorted_bam, args.output_folder, args.analysis_name, reference, logger, Config)
         # final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
         # keep_logging('END: Generating Statistics Reports\n', 'END: Generating Statistics Reports\n', logger, 'info')
@@ -132,21 +132,18 @@ def pipeline(args, logger):
             clean()
             out_sam = align_reads()
             out_sorted_bam = post_align(out_sam)
-<<<<<<< HEAD
             final_coverage_file = bedgraph(out_sorted_bam)
-=======
             stats(out_sorted_bam)
             final_coverage_file = bedgraph(out_sorted_bam)
-            #stats(out_sorted_bam)
->>>>>>> 68faef6293a969d834d3ac1aaf652402cf0c2a6e
+            stats(out_sorted_bam)
             ptr(final_coverage_file)
-            stats(out_sorted_bam)
         if steps_list[0] == "ptr":
             final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
             out_sorted_bam = "%s/%s_aln_sort.bam" % (args.output_folder, args.analysis_name)
             final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
-            ptr(final_coverage_file)
             stats(out_sorted_bam)
+            ptr(final_coverage_file)
+
     # Run individual pipeline steps based on the first value found in steps_list array: clean, align, post-align, bedgraph, ptr, stats etc
     else:
 
@@ -155,28 +152,30 @@ def pipeline(args, logger):
             out_sam = align_reads()
             out_sorted_bam = post_align(out_sam)
             final_coverage_file = bedgraph(out_sorted_bam)
-            ptr(final_coverage_file)
             stats(out_sorted_bam)
+            ptr(final_coverage_file)
+
 
         elif steps_list[0] == "align":
             out_sam = align_reads()
             out_sorted_bam = post_align(out_sam)
             final_coverage_file = bedgraph(out_sorted_bam)
-            ptr(final_coverage_file)
             stats(out_sorted_bam)
+            ptr(final_coverage_file)
 
         elif steps_list[0] == "post-align":
             out_sam = "%s/%s_aln.sam" % (args.output_folder, args.analysis_name)
             out_sorted_bam = post_align(out_sam)
             final_coverage_file = bedgraph(out_sorted_bam)
-            ptr(final_coverage_file)
             stats(out_sorted_bam)
+            ptr(final_coverage_file)
+
 
         elif steps_list[0] == "bedgraph":
             out_sorted_bam = "%s/%s_aln_sort.bam" % (args.output_folder, args.analysis_name)
             final_coverage_file = bedgraph(out_sorted_bam)
-            ptr(final_coverage_file)
             stats(out_sorted_bam)
+            ptr(final_coverage_file)
 
         elif steps_list[0] == "ptr":
             final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)

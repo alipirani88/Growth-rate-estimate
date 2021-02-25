@@ -7,7 +7,7 @@ variant_caller: samtools
 
 # Set bin folder path. Please make sure all the executables are placed in bin folder. Also make sure the path for individual tools are correct.
 [bin_path]
-binbase: /nfs/esnitkin/bin_group/Growth-rate-analysis_bin
+binbase:
 
 #resources: nodes=1:ppn=12,mem=47gb,walltime=250:00:00
 [scheduler]
@@ -69,11 +69,8 @@ call_parameters: -vg
 
 [picard]
 picard_bin: /picard-tools-2.24.0/
-<<<<<<< HEAD
 base_cmd: picard
-=======
-base_cmd: picard.jar
->>>>>>> 68faef6293a969d834d3ac1aaf652402cf0c2a6e
+
 
 [gatk]
 gatk_bin: /GenomeAnalysisTK-3.3-0/
