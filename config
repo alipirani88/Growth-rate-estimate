@@ -74,7 +74,7 @@ bowtie_bin:
 cores: 8
 build_cmd: bowtie2-build
 align_cmd: bowtie2
-parameters: -k 1 --non-deterministic --end-to-end --reorder
+parameters: -k 1 --non-deterministic --end-to-end --reorder --score-min L,0,0
 
 
 [bedtools]
