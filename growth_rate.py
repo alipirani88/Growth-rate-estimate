@@ -1,4 +1,5 @@
 __author__ = 'alipirani'
+
 import sys
 import os
 import argparse
@@ -117,10 +118,6 @@ def pipeline(args, logger):
     def stats(out_sorted_bam):
         keep_logging('START: Generating Statistics Reports', 'START: Generating Statistics Reports', logger, 'info')
         alignment_stats_file = alignment_stats(out_sorted_bam, args.output_folder, args.analysis_name, logger, Config)
-<<<<<<< HEAD:ptr.py
-=======
-        # Commented out. These methods are for debugging and troubleshooting purpose
->>>>>>> 82a9fde8f5c26edb4007075eb056584348a71e72:pipeline.py
         # gatk_DepthOfCoverage(out_sorted_bam, args.output_folder, args.analysis_name, reference, logger, Config)
         # final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
         # keep_logging('END: Generating Statistics Reports\n', 'END: Generating Statistics Reports\n', logger, 'info')
@@ -136,18 +133,10 @@ def pipeline(args, logger):
             clean()
             out_sam = align_reads()
             out_sorted_bam = post_align(out_sam)
-<<<<<<< HEAD:ptr.py
             final_coverage_file = bedgraph(out_sorted_bam)
             stats(out_sorted_bam)
             ptr(final_coverage_file)
 
-=======
-            final_coverage_file = bedgraph(out_sorted_bam)
-            stats(out_sorted_bam)
-            final_coverage_file = bedgraph(out_sorted_bam)
-            stats(out_sorted_bam)
-            ptr(final_coverage_file)
->>>>>>> 82a9fde8f5c26edb4007075eb056584348a71e72:pipeline.py
         if steps_list[0] == "ptr":
             final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
             out_sorted_bam = "%s/%s_aln_sort.bam" % (args.output_folder, args.analysis_name)
@@ -187,10 +176,7 @@ def pipeline(args, logger):
             final_coverage_file = bedgraph(out_sorted_bam)
             stats(out_sorted_bam)
             ptr(final_coverage_file)
-<<<<<<< HEAD:ptr.py
 
-=======
->>>>>>> 82a9fde8f5c26edb4007075eb056584348a71e72:pipeline.py
 
         elif steps_list[0] == "ptr":
             final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)

@@ -1,0 +1,17 @@
+name: Growth-rate-analysis
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - bedtools=2.29.2=hc088bd4_0
+  - bowtie2=2.3.5.1=py27he513fc3_0
+  - bzip2=1.0.8=h7f98852_4
+  - numpy=1.16.5=py27h95a1406_0
+  - picard=2.24.0=0
+  - python=2.7.15=h5a48372_1011_cpython
+  - samtools=1.11=h6270b1f_0
+  - statistics=1.0.3.5=py_1002
+  - subprocess32=3.5.4=py27h516909a_0
+  - trimmomatic=0.39=1
+

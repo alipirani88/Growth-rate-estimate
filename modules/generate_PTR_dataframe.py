@@ -36,7 +36,7 @@ def calculate_per_of_reads(median_sliding_window_array, bedfile):
     out = out.strip()
     out_split = out.split(' ')
     mapped_reads = out_split[0]
-    print "The no of mapped reads are: %s" % mapped_reads
+    #print "The no of mapped reads are: %s" % mapped_reads
     out_file = os.path.dirname(bedfile) + "/" + os.path.basename(bedfile)[0:20] + "_perc_bins.csv"
     with open(out_file, 'w') as out:
         header = "bin,count\n"
@@ -58,8 +58,6 @@ def smoothing_1(read_counts, window, out_path, bedfile, logger, Config):
     for i in xrange(0, len(read_counts), 100):
         start = i
         end = i + window
-        #print read_counts[start:end]
-        #print read_counts[start:end].count(0)
         if read_counts[start:end].count(0) == 10000:
             zero_bins += 1
         else:
@@ -82,28 +80,23 @@ def smoothing_1(read_counts, window, out_path, bedfile, logger, Config):
     for i in xrange(0, len(read_counts), 100):
         start = i
         end = i + window
-        #print window
-        #5000 changed to 100
         if len(moving_sum_array[start:end]) > 5000:
             median_sliding_window_array.append(statistics.median(moving_sum_array[start:end]))
-    print len(moving_sum_array)
-    print len(median_sliding_window_array)
-    #keep_logging('The length of median_sliding_window_array is {}'.format(len(median_sliding_window_array)), 'The length of median_sliding_window_array is {}'.format(len(median_sliding_window_array)), logger, 'debug')
 
     ## Step 4
     peak = max(median_sliding_window_array)
     through = min([x for x in median_sliding_window_array if x !=0])
     PTR_median = peak/through
-    #keep_logging('The peak and trough values for median_sliding_window_array is: {};{}'.format(peak, through), 'The peak and trough values for median_sliding_window_array is: {};{}'.format(peak, through), logger, 'info')
-
-    # print "The genomic location for peak values: %s" % (median_sliding_window_array.index(peak))
-    # print "The genomic location for trough values: %s" % (median_sliding_window_array.index(through))
 
     ## Step 5
     out_file_ptr = out_path.replace('.csv', '_PTR.txt')
     with open(out_file_ptr, 'a') as out:
         out.write(str(out_path)+' median_sliding_window_array :\t'+str(PTR_median)+'\n')
         out.write(str(out_path)+' Peak and trough location:\t' + str(median_sliding_window_array.index(peak)) + '\t' + str(median_sliding_window_array.index(through)) + '\n')
+        out.write(str(out_path) + ' Peak and trough values:\t' + str(peak) + '\t' + str(through) + '\n')
+    out.close()
+
+
 
     with open(out_path, 'w') as out:
         header = "bin,count\n"
@@ -115,7 +108,6 @@ def smoothing_1(read_counts, window, out_path, bedfile, logger, Config):
 
     ## Step 6
     calculate_per_of_reads(median_sliding_window_array, bedfile)
-
 
     return PTR_median
 
