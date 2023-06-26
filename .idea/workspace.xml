@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04f7f024-4b9c-4f09-95c5-c49a5c3585c0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/modules/generate_PTR_dataframe_backup_2021.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config" beforeDir="false" afterPath="$PROJECT_DIR$/config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config_ali" beforeDir="false" afterPath="$PROJECT_DIR$/config_ali" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/generate_PTR_dataframe.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/generate_PTR_dataframe.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/picard.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/picard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
     </list>
     <ignored path="Growth-rate-analysis.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,7 +24,7 @@
       <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
+            <state relative-caret-position="3486">
               <caret line="176" column="13" selection-start-line="176" selection-start-column="13" selection-end-line="176" selection-end-column="13" />
             </state>
           </provider>
@@ -40,7 +34,7 @@
         <entry file="file://$PROJECT_DIR$/config">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2835">
-              <caret line="135" column="47" selection-start-line="135" selection-start-column="47" selection-end-line="135" selection-end-column="47" />
+              <caret line="135" column="42" selection-start-line="135" selection-start-column="42" selection-end-line="135" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -84,8 +78,8 @@
       <file leaf-file-name="generate_PTR_dataframe.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/generate_PTR_dataframe.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="38" column="33" lean-forward="true" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="33" />
+            <state relative-caret-position="798">
+              <caret line="38" column="33" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -94,7 +88,7 @@
         <entry file="file://$PROJECT_DIR$/modules/generate_PTR_dataframe_backup_2021.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3654">
-              <caret line="174" lean-forward="true" selection-start-line="174" selection-end-line="174" />
+              <caret line="174" selection-start-line="174" selection-end-line="174" />
             </state>
           </provider>
         </entry>
@@ -342,9 +336,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="974" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1302621" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13185067" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="right" id="R Graphics" order="3" />
@@ -778,7 +771,7 @@
     <entry file="file://$PROJECT_DIR$/config">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2835">
-          <caret line="135" column="47" selection-start-line="135" selection-start-column="47" selection-end-line="135" selection-end-column="47" />
+          <caret line="135" column="42" selection-start-line="135" selection-start-column="42" selection-end-line="135" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -795,21 +788,21 @@
     <entry file="file://$PROJECT_DIR$/modules/generate_PTR_dataframe_backup_2021.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3654">
-          <caret line="174" lean-forward="true" selection-start-line="174" selection-end-line="174" />
+          <caret line="174" selection-start-line="174" selection-end-line="174" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
+        <state relative-caret-position="3486">
           <caret line="176" column="13" selection-start-line="176" selection-start-column="13" selection-end-line="176" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/generate_PTR_dataframe.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="38" column="33" lean-forward="true" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="33" />
+        <state relative-caret-position="798">
+          <caret line="38" column="33" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="33" />
         </state>
       </provider>
     </entry>

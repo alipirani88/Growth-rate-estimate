@@ -4,6 +4,10 @@
 
 The algorithm follows the procedure as described in the publication: Growth dynamics of gut microbiota in health and disease inferred from single metagenomic samples http://science.sciencemag.org/content/349/6252/1101.long with a few minor changes.
 
+An updated Snakemake workflow of this algorithm is available at 
+
+This repository will soon be archived.
+ 
 #### The pipeline runs sequentially as follows:
 ***
 

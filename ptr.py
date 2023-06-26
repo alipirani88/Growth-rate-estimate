@@ -35,6 +35,7 @@ def parser():
     required.add_argument('-o', action='store', dest="output_folder", help='Output Path ending with output directory name to save the results', required=True)
     required.add_argument('-analysis', action='store', dest="analysis_name", help='Unique analysis name to save the results', required=True)
     required.add_argument('-index', action='store', dest="index", help='Reference Index Name. Change this argument in config file and mention the reference header name such as KP_NTUH_chr/KPNIH1/KPNIH32.', required=True)
+    optional.add_argument('-adapter', action='store', dest="adapter", help='Path to adapter fasta file')
     optional.add_argument('-c', action='store', dest="croplength", help='Crop Length in case needed')
     #optional.add_argument('-f', action='store', dest="bam_input", help='Input Bam')
     return parser
@@ -73,11 +74,11 @@ def pipeline(args, logger):
                      'START: Pre-Processing Raw reads using Trimmomatic', logger, 'info')
         if args.type == "PE":
             # print "skip trimming"
-            trimmomatic(args.forward_raw, args.reverse_raw, args.output_folder, args.croplength, logger, Config)
+            trimmomatic(args.forward_raw, args.reverse_raw, args.output_folder, args.croplength, args.adapter, logger, Config)
         else:
             reverse_raw = "None"
             # print "skip trimming"
-            trimmomatic(args.forward_raw, reverse_raw, args.output_folder, args.croplength, logger, Config)
+            trimmomatic(args.forward_raw, reverse_raw, args.output_folder, args.croplength, args.adapter, logger, Config)
         keep_logging('END: Pre-Processing Raw reads using Trimmomatic\n',
                      'END: Pre-Processing Raw reads using Trimmomatic\n', logger, 'info')
 
@@ -117,12 +118,10 @@ def pipeline(args, logger):
     def stats(out_sorted_bam):
         keep_logging('START: Generating Statistics Reports', 'START: Generating Statistics Reports', logger, 'info')
         alignment_stats_file = alignment_stats(out_sorted_bam, args.output_folder, args.analysis_name, logger, Config)
-        gatk_DepthOfCoverage(out_sorted_bam, args.output_folder, args.analysis_name, reference, logger, Config)
-        # qualimap_report = qualimap(out_sorted_bam, args.output_folder, args.analysis_name, logger, Config)
-        # final_coverage_file = "%s/%s_coverage.bed_only_mapped.bed" % (args.output_folder, args.analysis_name)
-        final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
-        keep_logging('END: Generating Statistics Reports\n', 'END: Generating Statistics Reports\n', logger, 'info')
-        final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
+        # gatk_DepthOfCoverage(out_sorted_bam, args.output_folder, args.analysis_name, reference, logger, Config)
+        # final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
+        # keep_logging('END: Generating Statistics Reports\n', 'END: Generating Statistics Reports\n', logger, 'info')
+        # final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
 
     """ Start the pipeline: """
     # Split comma-seperated values provided with -steps argument and decide the starting point of pipeline.
@@ -134,17 +133,17 @@ def pipeline(args, logger):
             clean()
             out_sam = align_reads()
             out_sorted_bam = post_align(out_sam)
-            stats(out_sorted_bam)
             final_coverage_file = bedgraph(out_sorted_bam)
-            #stats(out_sorted_bam)
+            stats(out_sorted_bam)
             ptr(final_coverage_file)
-            #stats(out_sorted_bam)
+
         if steps_list[0] == "ptr":
             final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
             out_sorted_bam = "%s/%s_aln_sort.bam" % (args.output_folder, args.analysis_name)
-            #stats(out_sorted_bam)
             final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
+            stats(out_sorted_bam)
             ptr(final_coverage_file)
+
     # Run individual pipeline steps based on the first value found in steps_list array: clean, align, post-align, bedgraph, ptr, stats etc
     else:
 
@@ -153,28 +152,31 @@ def pipeline(args, logger):
             out_sam = align_reads()
             out_sorted_bam = post_align(out_sam)
             final_coverage_file = bedgraph(out_sorted_bam)
-            ptr(final_coverage_file)
             stats(out_sorted_bam)
+            ptr(final_coverage_file)
+
 
         elif steps_list[0] == "align":
             out_sam = align_reads()
             out_sorted_bam = post_align(out_sam)
             final_coverage_file = bedgraph(out_sorted_bam)
-            ptr(final_coverage_file)
             stats(out_sorted_bam)
+            ptr(final_coverage_file)
 
         elif steps_list[0] == "post-align":
             out_sam = "%s/%s_aln.sam" % (args.output_folder, args.analysis_name)
             out_sorted_bam = post_align(out_sam)
             final_coverage_file = bedgraph(out_sorted_bam)
-            ptr(final_coverage_file)
             stats(out_sorted_bam)
+            ptr(final_coverage_file)
+
 
         elif steps_list[0] == "bedgraph":
             out_sorted_bam = "%s/%s_aln_sort.bam" % (args.output_folder, args.analysis_name)
             final_coverage_file = bedgraph(out_sorted_bam)
-            ptr(final_coverage_file)
             stats(out_sorted_bam)
+            ptr(final_coverage_file)
+
 
         elif steps_list[0] == "ptr":
             final_coverage_file = "%s/%s_coverage.bed" % (args.output_folder, args.analysis_name)
@@ -244,7 +246,6 @@ def file_exists(path1, path2, reference):
     else:
         keep_logging('Index file already exists.', 'Index file already exists.', logger, 'info')
 
-    ############################################
     ref_fai_index = reference + ".fai"
     if not os.path.isfile(ref_fai_index):
         # file_basename = os.path.basename(reference)
@@ -252,7 +253,7 @@ def file_exists(path1, path2, reference):
         create_fai_index(reference, ref_fai_index)
     else:
         keep_logging('Samtools fai Index file already exists.', 'Samtools fai Index file already exists.', logger, 'info')
-    ############################################
+
     dict_name = os.path.splitext(os.path.basename(reference))[0] + ".dict"
     if not os.path.isfile(ConfigSectionMap(args.index, Config)['ref_path'] + "/" + dict_name):
         keep_logging('The reference seq dict file {} required for GATK and PICARD does not exists.'.format(dict_name), 'The reference seq dict file {} required for GATK and PICARD does not exists.'.format(dict_name), logger, 'warning')
